@@ -2,7 +2,6 @@ package com.lxm.customview.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Region;
@@ -27,21 +26,50 @@ public class BasicView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint fillPaint = new Paint();
-        fillPaint.setColor(Color.GREEN);
-        fillPaint.setStyle(Paint.Style.FILL);
-        Rect rect1 = new Rect(100,100,400,200);
-        Rect rect2 = new Rect(200,0,300,300);
-        Paint paint1 = new Paint();
-        paint1.setColor(Color.RED);
-        paint1.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(rect1,paint1);
-        canvas.drawRect(rect2,paint1);
-        Region region1 = new Region(rect1);
-        Region region2 = new Region(rect2);
-        Region region = new Region();
-        region.op(region1,region2,Region.Op.INTERSECT);
-        drawRegion(canvas,region,fillPaint);
+
+        //save restore
+//        canvas.drawColor(Color.RED);
+//        canvas.save();
+//        canvas.clipRect(100,100,800,800);
+//        canvas.drawColor(Color.GRAY);
+//        canvas.restore();
+//        canvas.drawColor(Color.GREEN);
+
+        //裁剪
+//        canvas.drawColor(Color.RED);
+//        canvas.clipRect(new Rect(100,100,200,200));
+//        canvas.drawColor(Color.GREEN);
+
+//        Rect rect = new Rect(10,10,400,200);
+//        Paint redPaint = generatePaint(Color.RED,3);
+//        canvas.drawRect(rect,redPaint);
+//
+//        canvas.translate(100,100);
+//        Paint greenPaint = generatePaint(Color.GREEN,3);
+//        canvas.drawRect(rect,greenPaint);
+
+//        Rect rect = new Rect(0,0,400,200);
+//        Paint paint = new Paint();
+//        paint.setColor(Color.RED);
+//        paint.setStyle(Paint.Style.FILL);
+//        canvas.translate(100,100);
+//        canvas.drawRect(rect,paint);
+
+//        Paint fillPaint = new Paint();
+//        fillPaint.setColor(Color.GREEN);
+//        fillPaint.setStyle(Paint.Style.FILL);
+//        Rect rect1 = new Rect(100,100,400,200);
+//        Rect rect2 = new Rect(200,0,300,300);
+//        Paint paint1 = new Paint();
+//        paint1.setColor(Color.RED);
+//        paint1.setStyle(Paint.Style.STROKE);
+//        canvas.drawRect(rect1,paint1);
+//        canvas.drawRect(rect2,paint1);
+//        Region region1 = new Region(rect1);
+//        Region region2 = new Region(rect2);
+//        Region region = new Region();
+//        region.op(region1,region2,Region.Op.INTERSECT);
+//        drawRegion(canvas,region,fillPaint);
 
 //        Rect rect1 = new Rect(100,100,400,200);
 //        Rect rect2 = new Rect(200,0,300,300);
@@ -129,6 +157,14 @@ public class BasicView extends View {
 //        canvas.drawCircle(190,200,150,paint);
 
 
+    }
+
+    private Paint generatePaint(int color,float width) {
+        Paint paint = new Paint();
+        paint.setColor(color);
+        paint.setStrokeWidth(width);
+        paint.setStyle(Paint.Style.STROKE);
+        return paint;
     }
 
     private void drawRegion(Canvas canvas, Region region, Paint paint) {
